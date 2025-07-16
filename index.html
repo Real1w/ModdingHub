@@ -65,6 +65,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.2s ease;
+      visibility: hidden; /* hide until music started */
     }
 
     #musicToggle:hover {
@@ -166,6 +167,36 @@
         height: 120px;
       }
     }
+
+    /* Fullscreen overlay for play button */
+    #startOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 15, 15, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+      color: #e53935;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #startOverlay button {
+      background-color: #e53935;
+      border: none;
+      padding: 1em 2em;
+      font-size: 1.3em;
+      font-weight: 700;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #startOverlay button:hover {
+      background-color: #b32b27;
+    }
   </style>
 </head>
 <body>
@@ -197,19 +228,38 @@
     </footer>
   </div>
 
-  <!-- Hidden YouTube player starts UNMUTED -->
+  <!-- Hidden YouTube player iframe (start src empty to load on interaction) -->
   <iframe id="ytplayer" width="0" height="0"
-    src="https://www.youtube.com/embed/PLutQQzjig4?autoplay=1&loop=1&playlist=PLutQQzjig4&controls=0&mute=0&modestbranding=1"
+    src=""
     frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
   </iframe>
+
+  <!-- Overlay with start button -->
+  <div id="startOverlay">
+    <h2>Click to Start Music</h2>
+    <button id="startButton">Play Music</button>
+  </div>
 
   <script>
     const musicToggle = document.getElementById('musicToggle');
     const ytplayer = document.getElementById('ytplayer');
+    const startOverlay = document.getElementById('startOverlay');
+    const startButton = document.getElementById('startButton');
 
-    // Start unmuted
-    let muted = false;
+    let muted = false; // starts unmuted
 
+    // Initially hide the mute toggle until music starts
+    musicToggle.style.visibility = 'hidden';
+
+    // On clicking the start button, load the iframe with autoplay unmuted
+    startButton.addEventListener('click', () => {
+      ytplayer.src = `https://www.youtube.com/embed/PLutQQzjig4?autoplay=1&loop=1&playlist=PLutQQzjig4&controls=0&mute=0&modestbranding=1`;
+      startOverlay.style.display = 'none';
+      musicToggle.style.visibility = 'visible';
+      musicToggle.textContent = 'Mute Music';
+    });
+
+    // Mute toggle button functionality
     musicToggle.addEventListener('click', () => {
       muted = !muted;
       ytplayer.src = `https://www.youtube.com/embed/PLutQQzjig4?autoplay=1&loop=1&playlist=PLutQQzjig4&controls=0&mute=${muted ? 1 : 0}&modestbranding=1`;
