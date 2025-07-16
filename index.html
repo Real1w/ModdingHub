@@ -55,7 +55,6 @@
       transform: scale(1.05);
     }
 
-    /* Music toggle button style */
     #musicToggle {
       background-color: #e53935;
       color: white;
@@ -65,7 +64,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.2s ease;
-      visibility: hidden; /* hide until music started */
+      visibility: hidden;
     }
 
     #musicToggle:hover {
@@ -168,7 +167,6 @@
       }
     }
 
-    /* Fullscreen overlay for play button */
     #startOverlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -245,8 +243,8 @@
     const startOverlay = document.getElementById('startOverlay');
     const startButton = document.getElementById('startButton');
 
-    let muted = false; // starts unmuted
-
+    let muted = false;
+    
     musicToggle.style.visibility = 'hidden';
 
     startButton.addEventListener('click', () => {
