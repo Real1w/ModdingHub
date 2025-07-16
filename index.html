@@ -197,7 +197,6 @@
     </footer>
   </div>
 
-  <!-- Hidden YouTube player -->
   <iframe id="ytplayer" width="0" height="0"
     src="https://www.youtube.com/embed/tm1RWI33krU?autoplay=1&loop=1&playlist=tm1RWI33krU&controls=0&mute=1&modestbranding=1"
     frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
@@ -207,7 +206,7 @@
     const musicToggle = document.getElementById('musicToggle');
     const ytplayer = document.getElementById('ytplayer');
 
-    let muted = true;
+    let muted = false;
 
     musicToggle.addEventListener('click', () => {
       muted = !muted;
