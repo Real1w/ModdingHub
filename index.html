@@ -166,11 +166,6 @@
         height: 120px;
       }
     }
-
-    /* Hide audio controls */
-    audio {
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -179,7 +174,7 @@
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="https://discord.gg/moddinghub" target="_blank" rel="noopener noreferrer">Discord</a></li>
     </ul>
-    <button id="musicToggle">Music On</button>
+    <button id="musicToggle">Unmute Music</button>
   </nav>
 
   <div class="container">
@@ -202,31 +197,22 @@
     </footer>
   </div>
 
-  <!-- Hidden audio element -->
-  <audio id="backgroundMusic" loop autoplay>
-    <source src="https://samply.app/p/oIAxk0RhQ9MfNtkY3mbl" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
+  <!-- Hidden YouTube player -->
+  <iframe id="ytplayer" width="0" height="0"
+    src="https://www.youtube.com/embed/tm1RWI33krU?autoplay=1&loop=1&playlist=tm1RWI33krU&controls=0&mute=1&modestbranding=1"
+    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+  </iframe>
 
   <script>
     const musicToggle = document.getElementById('musicToggle');
-    const music = document.getElementById('backgroundMusic');
+    const ytplayer = document.getElementById('ytplayer');
+
+    let muted = true;
 
     musicToggle.addEventListener('click', () => {
-      if (music.paused) {
-        music.play();
-        musicToggle.textContent = 'Music On';
-      } else {
-        music.pause();
-        musicToggle.textContent = 'Music Off';
-      }
-    });
-
-    // Optional: Start muted (if browser blocks autoplay sound)
-    music.volume = 0.5;
-    music.play().catch(() => {
-      // Autoplay blocked, do nothing or notify user
-      musicToggle.textContent = 'Music Off';
+      muted = !muted;
+      ytplayer.src = `https://www.youtube.com/embed/tm1RWI33krU?autoplay=1&loop=1&playlist=tm1RWI33krU&controls=0&mute=${muted ? 1 : 0}&modestbranding=1`;
+      musicToggle.textContent = muted ? 'Unmute Music' : 'Mute Music';
     });
   </script>
 </body>
