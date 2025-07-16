@@ -17,6 +17,7 @@
       background-color: #0f0f0f;
       color: #e0e0e0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
     }
 
     nav {
@@ -25,6 +26,7 @@
       display: flex;
       justify-content: center;
       border-bottom: 2px solid #292929;
+      animation: fadeInDown 1s ease forwards;
     }
 
     nav ul {
@@ -40,13 +42,14 @@
       font-weight: 600;
       padding: 0.5em 1em;
       border-radius: 6px;
-      transition: background 0.3s ease, color 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
 
     nav a:hover,
     nav a.active {
       background-color: #e53935;
       color: #fff;
+      transform: scale(1.05);
     }
 
     .container {
@@ -56,6 +59,7 @@
       background-color: #181818;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 1.2s ease-in-out;
     }
 
     header {
@@ -67,6 +71,21 @@
       font-size: 2.75em;
       color: #ffd54f;
       margin-bottom: 0.5em;
+    }
+
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #e53935;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 1em;
+    }
+
+    header img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px #e53935a0;
     }
 
     header p {
@@ -100,6 +119,16 @@
       border-top: 1px solid #292929;
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 768px) {
       nav ul {
         flex-direction: column;
@@ -109,6 +138,11 @@
 
       .container {
         padding: 1.5em;
+      }
+
+      header img {
+        width: 120px;
+        height: 120px;
       }
     }
   </style>
@@ -123,7 +157,9 @@
 
   <div class="container">
     <header>
-      <h1>Realshi's Bios</h1>
+      <img src="/mnt/data/38a747ce-7ac4-4910-a041-6de368a2d1db.webp" alt="Profile Picture" />
+      <h1>Realshi's Bio</h1>
+      <p>Welcome to my space online — a hub for VR modding and community.</p>
     </header>
 
     <main>
