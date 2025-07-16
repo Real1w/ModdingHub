@@ -218,23 +218,22 @@
     <main>
       <section>
         <h2>Welcome!</h2>
-        <p>Explore and download modded games made for Meta/Oculus headsets.</p>
-        <p>Thanks for visiting — stay tuned for updates and new releases!</p>
+        <p>Im Realshi . </p>
+        <p>i code , chill , mod games ,dont rlly answer my dms unless i need to , thanks for coming to my website</p>
+        <p>c++,c#,py,html</p>
       </section>
     </main>
 
     <footer>
-      <p>&copy; 2025 L5 & Realshi Modding Hub. All rights reserved.</p>
+      <p>&copy; 2025 Realshi Bio.</p>
     </footer>
   </div>
 
-  <!-- Hidden YouTube player iframe (start src empty to load on interaction) -->
   <iframe id="ytplayer" width="0" height="0"
     src=""
     frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
   </iframe>
 
-  <!-- Overlay with start button -->
   <div id="startOverlay">
     <h2>Click to Start Music</h2>
     <button id="startButton">Play Music</button>
@@ -248,10 +247,8 @@
 
     let muted = false; // starts unmuted
 
-    // Initially hide the mute toggle until music starts
     musicToggle.style.visibility = 'hidden';
 
-    // On clicking the start button, load the iframe with autoplay unmuted
     startButton.addEventListener('click', () => {
       ytplayer.src = `https://www.youtube.com/embed/PLutQQzjig4?autoplay=1&loop=1&playlist=PLutQQzjig4&controls=0&mute=0&modestbranding=1`;
       startOverlay.style.display = 'none';
@@ -259,7 +256,6 @@
       musicToggle.textContent = 'Mute Music';
     });
 
-    // Mute toggle button functionality
     musicToggle.addEventListener('click', () => {
       muted = !muted;
       ytplayer.src = `https://www.youtube.com/embed/PLutQQzjig4?autoplay=1&loop=1&playlist=PLutQQzjig4&controls=0&mute=${muted ? 1 : 0}&modestbranding=1`;
