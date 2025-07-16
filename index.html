@@ -25,8 +25,10 @@
       padding: 1em 2em;
       display: flex;
       justify-content: center;
+      align-items: center;
       border-bottom: 2px solid #292929;
       animation: fadeInDown 1s ease forwards;
+      gap: 1.5em;
     }
 
     nav ul {
@@ -34,6 +36,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1em;
+      margin-right: auto;
     }
 
     nav a {
@@ -49,6 +52,23 @@
     nav a.active {
       background-color: #e53935;
       color: #fff;
+      transform: scale(1.05);
+    }
+
+    /* Music toggle button style */
+    #musicToggle {
+      background-color: #e53935;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5em 1.2em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    #musicToggle:hover {
+      background-color: #b32b27;
       transform: scale(1.05);
     }
 
@@ -134,6 +154,7 @@
         flex-direction: column;
         align-items: center;
         gap: 0.5em;
+        margin-right: 0;
       }
 
       .container {
@@ -145,6 +166,11 @@
         height: 120px;
       }
     }
+
+    /* Hide audio controls */
+    audio {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -153,6 +179,7 @@
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="https://discord.gg/moddinghub" target="_blank" rel="noopener noreferrer">Discord</a></li>
     </ul>
+    <button id="musicToggle">Music On</button>
   </nav>
 
   <div class="container">
@@ -171,13 +198,36 @@
     </main>
 
     <footer>
-      <p>&copy; 2025 Realshi Bio All rights reserved.</p>
+      <p>&copy; 2025 L5 & Realshi Modding Hub. All rights reserved.</p>
     </footer>
   </div>
 
-  <iframe width="0" height="0" 
-    src="https://www.youtube.com/embed/tm1RWI33krU?autoplay=1&mute=1&loop=1&playlist=tm1RWI33krU" 
-    frameborder="0" allow="autoplay" allowfullscreen>
-  </iframe>
+  <!-- Hidden audio element -->
+  <audio id="backgroundMusic" loop autoplay>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const musicToggle = document.getElementById('musicToggle');
+    const music = document.getElementById('backgroundMusic');
+
+    musicToggle.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        musicToggle.textContent = 'Music On';
+      } else {
+        music.pause();
+        musicToggle.textContent = 'Music Off';
+      }
+    });
+
+    // Optional: Start muted (if browser blocks autoplay sound)
+    music.volume = 0.5;
+    music.play().catch(() => {
+      // Autoplay blocked, do nothing or notify user
+      musicToggle.textContent = 'Music Off';
+    });
+  </script>
 </body>
 </html>
