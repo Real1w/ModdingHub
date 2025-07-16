@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="thank you for visting my website" />
+  <meta name="description" content="Thank you for visiting my website" />
   <title>Realshi's Bio</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
@@ -17,21 +17,21 @@
       background-color: #0f0f0f;
       color: #e0e0e0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
     }
 
     nav {
       background-color: #1c1c1c;
       padding: 1em 2em;
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       border-bottom: 2px solid #292929;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 1.5em;
+      flex-wrap: wrap;
+      gap: 1em;
     }
 
     nav a {
@@ -39,22 +39,23 @@
       text-decoration: none;
       font-weight: 600;
       padding: 0.5em 1em;
-      border-radius: 8px;
-      transition: background 0.3s ease;
+      border-radius: 6px;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     nav a:hover,
     nav a.active {
       background-color: #e53935;
+      color: #fff;
     }
 
     .container {
       max-width: 960px;
-      margin: 2em auto;
+      margin: 3em auto;
       padding: 2em;
       background-color: #181818;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
     header {
@@ -63,50 +64,51 @@
     }
 
     header h1 {
-      font-size: 2.5em;
+      font-size: 2.75em;
       color: #ffd54f;
+      margin-bottom: 0.5em;
     }
 
     header p {
-      color: #ccc;
-      font-size: 1.1em;
+      font-size: 1.2em;
+      color: #bbb;
     }
 
-    main section {
+    section {
       background-color: #222;
       padding: 2em;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-      margin-bottom: 2em;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
     }
 
-    main h2 {
+    section h2 {
+      font-size: 1.8em;
       color: #ff7043;
+      margin-bottom: 1em;
+    }
+
+    section p {
+      font-size: 1.05em;
       margin-bottom: 1em;
     }
 
     footer {
       text-align: center;
+      padding: 2em 1em 1em;
       font-size: 0.9em;
       color: #888;
-      padding: 2em 0 1em;
       border-top: 1px solid #292929;
     }
 
     @media (max-width: 768px) {
-      nav {
-        justify-content: center;
-        padding: 1em;
-      }
-
-      .container {
-        padding: 1em;
-      }
-
       nav ul {
         flex-direction: column;
         align-items: center;
         gap: 0.5em;
+      }
+
+      .container {
+        padding: 1.5em;
       }
     }
   </style>
@@ -116,14 +118,14 @@
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="modded.html">Modded Games</a></li>
-      <li><a href="https://discord.gg/moddinghub" target="_blank">Discord</a></li>
+      <li><a href="https://discord.gg/moddinghub" target="_blank" rel="noopener noreferrer">Discord</a></li>
     </ul>
   </nav>
 
   <div class="container">
     <header>
       <h1>L5 & Realshi Modding Hub</h1>
-      <p>Your go-to spot for modded APKs for VR games.</p>
+      <p>Your go-to spot for modded APKs for VR games</p>
     </header>
 
     <main>
