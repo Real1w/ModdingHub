@@ -18,6 +18,26 @@
       color: #e0e0e0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, #ff572233 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.1;
+      z-index: 0;
+      animation: bgMove 60s linear infinite;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
     }
 
     nav {
@@ -29,14 +49,8 @@
       border-bottom: 2px solid #292929;
       animation: fadeInDown 1s ease forwards;
       gap: 1.5em;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1em;
-      margin-right: auto;
+      position: relative;
+      z-index: 1;
     }
 
     nav a {
@@ -51,7 +65,6 @@
     nav a:hover,
     nav a.active {
       background-color: #e53935;
-      color: #fff;
       transform: scale(1.05);
     }
 
@@ -79,7 +92,14 @@
       background-color: #181818;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      animation: fadeIn 1.2s ease-in-out;
+      animation: fadeIn 1.5s ease-in-out;
+      transition: background 0.5s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .container:hover {
+      background-color: #1e1e1e;
     }
 
     header {
@@ -92,12 +112,25 @@
       color: #ffd54f;
       margin-bottom: 0.5em;
       animation: fadeUp 1s ease forwards;
-      transition: all 0.3s ease;
+      position: relative;
     }
 
-    header h1:hover {
-      animation: textHoverPop 0.6s ease;
-      cursor: default;
+    header h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(to right, #ffeb3b, #ff5722);
+      transform: translateX(-50%);
+      animation: shine 3s linear infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-50%) scaleX(0); }
+      50% { transform: translateX(-50%) scaleX(1); }
+      100% { transform: translateX(-50%) scaleX(0); }
     }
 
     header img {
@@ -106,13 +139,15 @@
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid #e53935;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
       margin-bottom: 1em;
+      animation: pulse 3s infinite;
     }
 
-    header img:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 20px #e53935a0;
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7); }
+      70% { box-shadow: 0 0 20px 15px rgba(229, 57, 53, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
     }
 
     header p {
@@ -125,6 +160,12 @@
       padding: 2em;
       border-radius: 10px;
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+      transition: box-shadow 0.4s ease;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    section:hover {
+      box-shadow: 0 0 25px #ff7043cc;
     }
 
     section h2 {
@@ -132,31 +173,12 @@
       color: #ff7043;
       margin-bottom: 1em;
       animation: fadeUp 1s ease forwards;
-      animation-delay: 0.3s;
-      transition: all 0.3s ease;
     }
 
-    section h2:hover {
-      animation: textHoverPop 0.6s ease;
-      cursor: default;
-    }
-
-    section p:nth-child(2),
-    section p:nth-child(3),
-    section p:nth-child(4) {
-      animation: fadeUp 1s ease forwards;
+    section p {
+      animation: fadeUp 1.2s ease forwards;
       font-size: 1.05em;
       margin-bottom: 1em;
-      transition: all 0.3s ease;
-    }
-
-    section p:nth-child(2) { animation-delay: 0.6s; }
-    section p:nth-child(3) { animation-delay: 0.9s; }
-    section p:nth-child(4) { animation-delay: 1.2s; }
-
-    section p:hover {
-      animation: textHoverPop 0.6s ease;
-      cursor: default;
     }
 
     footer {
@@ -178,38 +200,8 @@
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes textHoverPop {
-      0%   { transform: scale(1) translateY(0); color: inherit; }
-      50%  { transform: scale(1.05) translateY(-4px); color: #ffd54f; }
-      100% { transform: scale(1) translateY(0); color: inherit; }
-    }
-
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5em;
-        margin-right: 0;
-      }
-
-      .container {
-        padding: 1.5em;
-      }
-
-      header img {
-        width: 120px;
-        height: 120px;
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     #startOverlay {
@@ -240,6 +232,55 @@
     #startOverlay button:hover {
       background-color: #b32b27;
     }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5em;
+      }
+
+      .container {
+        padding: 1.5em;
+      }
+
+      header img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    #statusViewWrap {
+      text-align: center;
+      margin-top: 2em;
+      font-size: 0.95em;
+      color: #aaa;
+      animation: fadeIn 1s ease;
+    }
+
+    #statusText.online {
+      color: #4caf50;
+      font-weight: bold;
+    }
+    #statusText.offline {
+      color: #f44336;
+      font-weight: bold;
+    }
+
+    #customCursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      background: #e53935;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 12px #e53935aa;
+      transition: transform 0.1s ease;
+    }
   </style>
 </head>
 <body>
@@ -255,21 +296,26 @@
     <header>
       <img src="https://i.postimg.cc/tJxTT9NZ/e5f5cbcdc9f814ec466bfc6395c6cf50.webp" alt="Profile Picture" />
       <h1>Realshi's Bio</h1>
-      <p>Welcome to my bio where i will upd this if i want to add anything to it.</p>
+      <p>Welcome to my bio where I will upd this if I want to add anything to it.</p>
     </header>
 
     <main>
       <section>
         <h2>Welcome!</h2>
-        <p>Im Realshi . </p>
-        <p>i code , chill , mod games ,dont rlly answer my dms unless i need to , thanks for coming to my website</p>
-        <p>c++,c#,py,html</p>
+        <p>I'm Realshi.</p>
+        <p>I code, chill, mod games, don't really answer DMs unless needed. Thanks for visiting.</p>
+        <p>Languages: C++, C#, Python, HTML</p>
       </section>
     </main>
 
     <footer>
       <p>&copy; 2025 Realshi Bio.</p>
     </footer>
+
+    <div id="statusViewWrap">
+      <div id="siteStatus">Status: <span id="statusText">Checking...</span></div>
+      <div id="viewCount">Views: <span id="viewNum">0</span></div>
+    </div>
   </div>
 
   <iframe id="ytplayer" width="0" height="0"
@@ -282,14 +328,14 @@
     <button id="startButton">Play Music</button>
   </div>
 
+  <div id="customCursor"></div>
+
   <script>
     const musicToggle = document.getElementById('musicToggle');
     const ytplayer = document.getElementById('ytplayer');
     const startOverlay = document.getElementById('startOverlay');
     const startButton = document.getElementById('startButton');
-
     let muted = false;
-
     musicToggle.style.visibility = 'hidden';
 
     startButton.addEventListener('click', () => {
@@ -303,6 +349,33 @@
       muted = !muted;
       ytplayer.src = `https://www.youtube.com/embed/PLutQQzjig4?autoplay=1&loop=1&playlist=PLutQQzjig4&controls=0&mute=${muted ? 1 : 0}&modestbranding=1`;
       musicToggle.textContent = muted ? 'Unmute Music' : 'Mute Music';
+    });
+
+    const statusText = document.getElementById('statusText');
+    function updateStatus() {
+      if (navigator.onLine) {
+        statusText.textContent = 'Online';
+        statusText.className = 'online';
+      } else {
+        statusText.textContent = 'Offline';
+        statusText.className = 'offline';
+      }
+    }
+    window.addEventListener('online', updateStatus);
+    window.addEventListener('offline', updateStatus);
+    updateStatus();
+
+    const viewNum = document.getElementById('viewNum');
+    let views = localStorage.getItem('realshi_view_count');
+    if (!views) views = 1;
+    else views = parseInt(views) + 1;
+    localStorage.setItem('realshi_view_count', views);
+    viewNum.textContent = views;
+
+    const customCursor = document.getElementById('customCursor');
+    document.addEventListener('mousemove', e => {
+      customCursor.style.top = `${e.clientY}px`;
+      customCursor.style.left = `${e.clientX}px`;
     });
   </script>
 </body>
