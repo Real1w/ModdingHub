@@ -256,7 +256,6 @@
       font-weight: bold;
     }
 
-    /* 🎯 Custom Cursor */
     #customCursor {
       position: fixed;
       top: 0;
@@ -275,7 +274,7 @@
 </head>
 <body>
   <nav>
-    <a href="https://discord.gg/moddinghub" target="_blank">Discord</a>
+    <a href="https://discord.gg/moddinghub" target="_blank" rel="noopener noreferrer">Discord</a>
     <a href="index.html" class="active">Home</a>
     <button id="musicToggle">Mute Music</button>
   </nav>
@@ -301,8 +300,7 @@
     </footer>
 
     <div id="statusViewWrap">
-      <div id="siteStatus">Status: <span id="statusText">Checking...</span></div>
-      <div id="viewCount">Views: <span id="viewNum">0</span></div>
+      Status: <span id="statusText">Checking...</span>
     </div>
   </div>
 
@@ -352,13 +350,6 @@
     window.addEventListener('online', updateStatus);
     window.addEventListener('offline', updateStatus);
     updateStatus();
-
-    const viewNum = document.getElementById('viewNum');
-    let views = localStorage.getItem('realshi_view_count');
-    if (!views) views = 1;
-    else views = parseInt(views) + 1;
-    localStorage.setItem('realshi_view_count', views);
-    viewNum.textContent = views;
 
     const customCursor = document.getElementById('customCursor');
     document.addEventListener('mousemove', e => {
