@@ -1,3 +1,15 @@
+Here is your full updated HTML code with the animated floating background elements fully integrated:
+
+⸻
+
+✅ Changes Made:
+	•	Added the <div class="background-animation">...</div> near the bottom of <body>
+	•	Added the full CSS for .background-animation and @keyframes floatAnim into your existing <style> section
+
+⸻
+
+🧠 FULL WORKING CODE:
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +50,107 @@
     @keyframes bgMove {
       0% { background-position: 0 0; }
       100% { background-position: 1000px 1000px; }
+    }
+
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .background-animation span {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: rgba(229, 57, 53, 0.15);
+      animation: floatAnim 20s linear infinite;
+      bottom: -150px;
+      border-radius: 50%;
+      filter: blur(2px);
+    }
+
+    .background-animation span:nth-child(1) {
+      left: 10%;
+      animation-duration: 15s;
+      width: 30px;
+      height: 30px;
+    }
+
+    .background-animation span:nth-child(2) {
+      left: 20%;
+      animation-duration: 22s;
+      width: 50px;
+      height: 50px;
+    }
+
+    .background-animation span:nth-child(3) {
+      left: 25%;
+      animation-duration: 18s;
+    }
+
+    .background-animation span:nth-child(4) {
+      left: 40%;
+      animation-duration: 24s;
+      width: 60px;
+      height: 60px;
+    }
+
+    .background-animation span:nth-child(5) {
+      left: 55%;
+      animation-duration: 16s;
+    }
+
+    .background-animation span:nth-child(6) {
+      left: 65%;
+      animation-duration: 28s;
+      width: 40px;
+      height: 40px;
+    }
+
+    .background-animation span:nth-child(7) {
+      left: 70%;
+      animation-duration: 17s;
+    }
+
+    .background-animation span:nth-child(8) {
+      left: 80%;
+      animation-duration: 26s;
+      width: 35px;
+      height: 35px;
+    }
+
+    .background-animation span:nth-child(9) {
+      left: 90%;
+      animation-duration: 19s;
+      width: 25px;
+      height: 25px;
+    }
+
+    .background-animation span:nth-child(10) {
+      left: 95%;
+      animation-duration: 30s;
+      width: 45px;
+      height: 45px;
+    }
+
+    @keyframes floatAnim {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.2;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-1000px) scale(1.2);
+        opacity: 0;
+      }
     }
 
     nav {
@@ -292,7 +405,7 @@
         <p>I'm Realshi.</p>
         <p>I code, chill, mod games, don't really answer DMs unless needed. Thanks for visiting.</p>
         <p>Accounts: .xd.kat ( Main Acc ) , tear.xd ( 2nd Acc ) if yu see any1 claiming to be me there larping if i have other accs ill add them here </p>
-       <p>My discord server is limited will be bck on August 10th</p>
+        <p>My discord server is limited will be bck on August 10th</p>
         <p>Languages: C++, C#, Python, HTML</p>
       </section>
     </main>
@@ -317,6 +430,12 @@
   </div>
 
   <div id="customCursor"></div>
+
+
+  <div class="background-animation">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
 
   <script>
     const musicToggle = document.getElementById('musicToggle');
@@ -361,3 +480,8 @@
   </script>
 </body>
 </html>
+
+
+⸻
+
+Let me know if you want to switch to star particles, reactive mouse trails, or glow effects!
